@@ -1,6 +1,6 @@
-package com.yonggamsa.withsuyeonjung.user.framework.adapter.output.mysql;
+package com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql;
 
-import com.yonggamsa.withsuyeonjung.user.framework.adapter.output.mysql.data.UserData;
+import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data.UserData;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.context.annotation.ApplicationScope;
 

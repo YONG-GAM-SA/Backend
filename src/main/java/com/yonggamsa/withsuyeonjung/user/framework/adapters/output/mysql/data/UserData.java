@@ -1,6 +1,4 @@
-package com.yonggamsa.withsuyeonjung.user.framework.adapter.output.mysql.data;
-
-import lombok.Data;
+package com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;

@@ -1,7 +1,7 @@
-package com.yonggamsa.withsuyeonjung.user.framework.adapter.output.mysql.mappers;
+package com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.mappers;
 
 import com.yonggamsa.withsuyeonjung.user.domain.entity.User;
-import com.yonggamsa.withsuyeonjung.user.framework.adapter.output.mysql.data.UserData;
+import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data.UserData;
 
 public class UserMapper {
 
