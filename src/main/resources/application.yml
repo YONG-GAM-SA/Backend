@@ -1,1 +1,19 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/{db table name}?serverTimezone=Asia/Seoul
+    username: {username}
+    password: {password}
+  jpa:
+    properties:
+      hibernate:
+        format_sql: 'true'
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: create-drop
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: chat
 
