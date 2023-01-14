@@ -6,10 +6,11 @@ import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.UserJpa
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data.UserData;
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.mappers.UserMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.ApplicationScope;
 
+@Component
 @RequiredArgsConstructor
-@ApplicationScope
 public class UserMySQLAdapter implements UserRegisterOutputPort {
 
     private final UserJpaRepository userJpaRepository;

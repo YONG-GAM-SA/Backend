@@ -7,10 +7,5 @@ import java.util.UUID;
 
 public interface UserManagementUseCase {
 
-    public User registerUser(Email email,
-                             Token token,
-                             UserName userName,
-                             Nickname nickname,
-                             Password password,
-                             BirthDate birthDate);
+    public User registerUser(Email email, Token token,UserName userName,Nickname nickname,Password password, BirthDate birthDate);
 }

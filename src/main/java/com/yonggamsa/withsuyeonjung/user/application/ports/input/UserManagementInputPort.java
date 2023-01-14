@@ -5,15 +5,15 @@ import com.yonggamsa.withsuyeonjung.user.application.usecase.UserManagementUseCa
 import com.yonggamsa.withsuyeonjung.user.domain.entity.User;
 import com.yonggamsa.withsuyeonjung.user.domain.entity.factory.UserFactory;
 import com.yonggamsa.withsuyeonjung.user.domain.vo.*;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 
+@Component
+@RequiredArgsConstructor
 public class UserManagementInputPort implements UserManagementUseCase {
 
     private final UserRegisterOutputPort userRegisterOutputPort;
-
-    public UserManagementInputPort(UserRegisterOutputPort userRegisterOutputPort) {
-        this.userRegisterOutputPort = userRegisterOutputPort;
-    }
 
     @Override
     public User registerUser(Email email,
