@@ -21,9 +21,6 @@ public class RestAdapter {
 
     @PostMapping("/register")
     public void registerUser(@RequestBody AddUser addUser) {
-
-
-
         userManagementUseCase.registerUser(
                 Email.getEmail(addUser.getEmail()),
                 Token.getToken(addUser.getToken()),
