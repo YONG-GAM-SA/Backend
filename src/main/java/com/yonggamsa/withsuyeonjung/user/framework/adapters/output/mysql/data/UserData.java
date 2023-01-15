@@ -13,11 +13,11 @@ public class UserData {
     @Id
     @Column(columnDefinition = "BINARY(16)")
     private UUID id;
+    private String name;
     @Embedded
     private EmailData email;
     @Embedded
     private TokenData token; // social_token (OAuth2.0)
-    private String name;
     @Embedded
     private NicknameData nickname;
     @Embedded
