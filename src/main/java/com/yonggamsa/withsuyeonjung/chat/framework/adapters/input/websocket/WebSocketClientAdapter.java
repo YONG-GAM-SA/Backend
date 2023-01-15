@@ -11,7 +11,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-
+// TODO: 필요 여부 확인 후 제거
 public class WebSocketClientAdapter extends TextWebSocketHandler implements ChannelInterceptor {
 
     private static List<WebSocketSession> webSocketSessionList = new ArrayList<>();
