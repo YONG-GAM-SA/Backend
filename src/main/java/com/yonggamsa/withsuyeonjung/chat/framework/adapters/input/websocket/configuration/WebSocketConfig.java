@@ -1,4 +1,4 @@
-package com.yonggamsa.withsuyeonjung.chat.framework.input.websocket.configuration;
+package com.yonggamsa.withsuyeonjung.chat.framework.adapters.input.websocket.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
