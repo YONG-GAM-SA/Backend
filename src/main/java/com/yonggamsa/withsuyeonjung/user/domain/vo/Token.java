@@ -1,13 +1,13 @@
 package com.yonggamsa.withsuyeonjung.user.domain.vo;
 
-import lombok.Value;
-
-@Value
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Token {
 
-    String token;
+    private String token;
 
-    public static Token getToken(String token) {
-        return new Token(token);
-    }
 }

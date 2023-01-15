@@ -45,8 +45,10 @@ public class OAuthAttributes {
     public User toDomainEntity(){
         return User.builder()
                 .id(UUID.randomUUID())
-//                .email(new EmailData(this.email))
-//                .name(this.name)
+                .email(null)
+                .userName(null)
+                .birthDate(null)
+                .token(null)
                 .nickname(new Nickname(NicknamUtil.createRandomNickname()))
                 .build();
     }

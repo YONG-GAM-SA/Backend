@@ -1,6 +1,8 @@
 package com.yonggamsa.withsuyeonjung.user.framework.configuration.spring.security;
 
 import com.yonggamsa.withsuyeonjung.user.framework.configuration.spring.YamlPropertySourceFactory;
+import com.yonggamsa.withsuyeonjung.user.framework.configuration.spring.security.auth.CustomOAuth2UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
@@ -20,42 +22,15 @@ import org.springframework.security.web.SecurityFilterChain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-@EnableWebSecurity
 @Configuration
+@EnableWebSecurity
+@RequiredArgsConstructor
 @PropertySource(value = "classpath:application-oauth.yml", factory = YamlPropertySourceFactory.class)
-public class WebSecurityConfig{
+public class WebSecurityConfig {
 
-    private static List<String> clients = Arrays.asList("google");
-    private static String CLIENT_PROPERTY_KEY = "spring.security.oauth2.client.registration.";
-
+    private final CustomOAuth2UserService customOAuth2UserService;
     @Autowired
     private Environment env;
-     @Bean
-    public ClientRegistrationRepository clientRegistrationRepository(){
-        List<ClientRegistration> registrations = clients.stream()
-                .map(client -> getRegistration(client))
-                .filter(registration -> registration != null)
-                .collect(Collectors.toList());
-        return new InMemoryClientRegistrationRepository(registrations);
-    }
-
-    private ClientRegistration getRegistration(String client){
-
-        if(client == null) {
-            return null;
-        }
-
-        String clientId = env.getProperty(CLIENT_PROPERTY_KEY + client + ".client-id");
-        String clientSecret = env.getProperty(CLIENT_PROPERTY_KEY + client + ".client-secret");
-
-        if(client.equals("google")) {
-            return CommonOAuth2Provider.GOOGLE.getBuilder(client)
-                    .clientId(clientId).clientSecret(clientSecret).build();
-        }
-
-        return null;
-    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
@@ -63,23 +38,14 @@ public class WebSecurityConfig{
         http
                 .headers().frameOptions().sameOrigin()
                 .and()
-                .csrf().disable();
-
-        http
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/h2-console/**","favicon.ico").permitAll()
                 .anyRequest().authenticated()
                     .and()
                 .oauth2Login()
-                .clientRegistrationRepository(clientRegistrationRepository())
-                .authorizedClientService(authorizedClientService());
+                .userInfoEndpoint().userService(customOAuth2UserService);
 
         return http.build();
     }
-
-    @Bean
-    public OAuth2AuthorizedClientService authorizedClientService(){
-        return new InMemoryOAuth2AuthorizedClientService(clientRegistrationRepository());
-    }
-
 }

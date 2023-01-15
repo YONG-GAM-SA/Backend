@@ -1,6 +1,8 @@
 package com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -8,6 +10,8 @@ import java.util.UUID;
 @Table(name = "users")
 @Entity
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserData {
 
     @Id

@@ -24,9 +24,9 @@ public class UserManagementInputPort implements UserManagementUseCase {
     public User registerUser(Email email, Token token,UserName userName,
                              Nickname nickname,Password password, BirthDate birthDate) {
 
-        User user = UserFactory.getUser(email,token,userName,nickname, password,birthDate);
-
-        return userRegisterOutputPort.createUser(user) ? user : null;
+        //User user = UserFactory.getUser(email,token,userName,nickname, password,birthDate);
+        return null;
+        //return userRegisterOutputPort.createUser(user) ? user : null;
     }
 
     @Override

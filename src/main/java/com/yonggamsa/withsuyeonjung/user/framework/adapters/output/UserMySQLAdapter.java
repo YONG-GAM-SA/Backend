@@ -36,7 +36,7 @@ public class UserMySQLAdapter implements UserRegisterOutputPort, UserReadOutPort
 
     @Override
     public Optional<User> findByEmail(Email email) {
-
-        return null;
+        UserData user = userJpaRepository.findByEmail(email.getEmail());
+        return Optional.empty();
     }
 }

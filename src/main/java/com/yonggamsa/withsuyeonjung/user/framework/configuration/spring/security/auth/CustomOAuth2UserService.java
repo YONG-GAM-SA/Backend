@@ -13,10 +13,12 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.Map;
 
+@Service
 @RequiredArgsConstructor
 public class CustomOAuth2UserService implements OAuth2UserService {
 
@@ -33,7 +35,7 @@ public class CustomOAuth2UserService implements OAuth2UserService {
 
         OAuthAttributes oAuthAttributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
 
-//        UserData user = userManagementUseCase.registerUser()
+        UserData user = saveOrUpdate(oAuthAttributes);
 
         return new DefaultOAuth2User(
                 Collections.singleton(new SimpleGrantedAuthority(null)),

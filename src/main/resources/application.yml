@@ -1,4 +1,9 @@
 spring:
+  profiles:
+    include: oauth
+  jpa:
+    hiberante:
+      ddl-auto: create
   h2:
     console:
       enabled: true
