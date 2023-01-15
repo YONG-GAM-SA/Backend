@@ -1,12 +1,14 @@
 package com.yonggamsa.withsuyeonjung.user.domain.vo;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 
-@Value
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Email {
-    String email;
 
-    public static Email getEmail(String email) {
-        return new Email(email);
-    }
+    private String email;
 }

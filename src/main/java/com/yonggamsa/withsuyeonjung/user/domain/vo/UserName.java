@@ -1,13 +1,13 @@
 package com.yonggamsa.withsuyeonjung.user.domain.vo;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Value;
-
-@Value
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserName {
 
-    String userName;
-
-    public static UserName getUserName(String userName) {
-        return new UserName(userName);
-    }
+    private String userName;
 }
