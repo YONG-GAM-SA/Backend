@@ -7,10 +7,10 @@ import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data.Us
 public class UserMapper {
 
     public static UserData userDomainToUserData(User user) {
-        return null;
-//        return UserData.builder()
-//                .id(user.getId())
-//                .build();
+//        return null;
+        return UserData.builder()
+                .id(user.getId())
+                .build();
 //                .email(new EmailData(user.getEmail()));
     }
 }

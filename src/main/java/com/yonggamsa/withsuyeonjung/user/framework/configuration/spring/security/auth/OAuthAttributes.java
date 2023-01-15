@@ -1,5 +1,6 @@
 package com.yonggamsa.withsuyeonjung.user.framework.configuration.spring.security.auth;
 
+import com.yonggamsa.withsuyeonjung.user.domain.entity.User;
 import com.yonggamsa.withsuyeonjung.user.domain.vo.Nickname;
 import com.yonggamsa.withsuyeonjung.user.framework.NicknamUtil;
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data.EmailData;
@@ -16,34 +17,37 @@ public class OAuthAttributes {
 
     private String name;
     private String email;
+    private String nameAttributeKey;
     private Map<String, Object> attributes;
 
     @Builder
-    public OAuthAttributes(String name, String email, Map<String, Object> attributes) {
+    public OAuthAttributes(String name, String email, String nameAttributeKey, Map<String, Object> attributes) {
         this.name = name;
         this.email = email;
+        this.nameAttributeKey = nameAttributeKey;
         this.attributes = attributes;
     }
 
-    public static OAuthAttributes of(String registrationId, String userNameAttribtute, Map<String, Object> attirbutes){
-        return ofGoogle(userNameAttribtute, attirbutes);
+    public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attirbutes){
+        return ofGoogle(userNameAttributeName, attirbutes);
     }
 
-    private static OAuthAttributes ofGoogle(String userNameAttributes, Map<String, Object> attributes){
+    private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes){
         return OAuthAttributes.builder()
                 .name((String)attributes.get("name"))
                 .email((String)attributes.get("email"))
+                .nameAttributeKey(userNameAttributeName)
                 .attributes(attributes)
                 .build();
     }
 
     // TODO: password, birthdate, token 상의 필요
-    public UserData toJpaUserEntity(){
-        return UserData.builder()
+    public User toDomainEntity(){
+        return User.builder()
                 .id(UUID.randomUUID())
-                .email(new EmailData(this.email))
-                .name(this.name)
-                .nickname(NicknameData.createNicknameRandomly())
+//                .email(new EmailData(this.email))
+//                .name(this.name)
+                .nickname(new Nickname(NicknamUtil.createRandomNickname()))
                 .build();
     }
 

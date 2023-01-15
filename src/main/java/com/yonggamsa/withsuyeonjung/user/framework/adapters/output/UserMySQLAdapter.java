@@ -29,15 +29,13 @@ public class UserMySQLAdapter implements UserRegisterOutputPort, UserReadOutPort
     }
 
     @Override
-    public User findById(UUID id) {
+    public Optional<User> findById(UUID id) {
         UserData findUser = userJpaRepository.findById(id).orElseThrow(() -> new RuntimeException("없는 ID의 유저입니다. : " + id.toString()));
         return null;
     }
 
     @Override
-    public User findByEmail(Email email) {
-
-
+    public Optional<User> findByEmail(Email email) {
 
         return null;
     }

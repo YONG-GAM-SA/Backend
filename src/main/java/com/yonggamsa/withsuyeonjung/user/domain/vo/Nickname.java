@@ -8,7 +8,6 @@ public class Nickname {
     String nickName;
 
     public static Nickname getNickName(String nickName) {
-
         return new Nickname(nickName);
     }
 }

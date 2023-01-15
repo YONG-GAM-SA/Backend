@@ -9,6 +9,7 @@ import com.yonggamsa.withsuyeonjung.user.domain.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -29,12 +30,19 @@ public class UserManagementInputPort implements UserManagementUseCase {
     }
 
     @Override
-    public User findUserById(UUID id) {
+    public User register(User user) {
+        return userRegisterOutputPort.createUser(user) ? user : null;
+    }
+
+    @Override
+    public Optional<User> findUserById(UUID id) {
         return userReadOutPort.findById(id);
     }
 
     @Override
-    public User findUserByEmail(Email email) {
+    public Optional<User> findUserByEmail(Email email) {
         return userReadOutPort.findByEmail(email);
     }
+
+
 }

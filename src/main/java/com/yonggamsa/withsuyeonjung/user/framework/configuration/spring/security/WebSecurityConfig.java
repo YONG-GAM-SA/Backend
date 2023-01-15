@@ -24,16 +24,12 @@ import java.util.stream.Collectors;
 @EnableWebSecurity
 @Configuration
 @PropertySource(value = "classpath:application-oauth.yml", factory = YamlPropertySourceFactory.class)
-public class WebSecurityConfig implements EnvironmentAware {
+public class WebSecurityConfig{
 
     private static List<String> clients = Arrays.asList("google");
     private static String CLIENT_PROPERTY_KEY = "spring.security.oauth2.client.registration.";
 
-    @Override
-    public void setEnvironment(Environment environment) {
-        this.env = environment;
-    }
-
+    @Autowired
     private Environment env;
      @Bean
     public ClientRegistrationRepository clientRegistrationRepository(){

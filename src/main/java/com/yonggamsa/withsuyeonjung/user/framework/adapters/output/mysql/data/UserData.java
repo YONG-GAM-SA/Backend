@@ -14,8 +14,8 @@ public class UserData {
     @Column(columnDefinition = "BINARY(16)")
     private UUID id;
     private String name;
-    @Embedded
-    private EmailData email;
+//    @Embedded
+    private String email;
     @Embedded
     private TokenData token; // social_token (OAuth2.0)
     @Embedded
@@ -24,5 +24,11 @@ public class UserData {
     private PasswordData password;
     @Embedded
     private BirthDateData birthDate;
+
+    public UserData update(String name, String email){
+        this.name = name;
+        this.email = email;
+        return this;
+    }
 
 }
