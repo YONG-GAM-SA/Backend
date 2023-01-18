@@ -1,14 +1,16 @@
 package com.yonggamsa.withsuyeonjung.user.domain.vo;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 
-@Value
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class BirthDate {
 
-    String birthDate;
+    private String birthDate;
 
-    public static BirthDate getBirthDate(String birthDate) {
-
-        return new BirthDate(birthDate);
-    }
 }

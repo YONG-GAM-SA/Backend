@@ -1,14 +1,14 @@
 package com.yonggamsa.withsuyeonjung.user.domain.vo;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Value;
-
-@Value
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Password {
 
-    String password;
+    private String password;
 
-    public static Password getPassword(String password) {
-
-        return new Password(password);
-    }
 }
