@@ -6,10 +6,10 @@ import com.yonggamsa.withsuyeonjung.user.domain.entity.User;
 import com.yonggamsa.withsuyeonjung.user.domain.vo.Email;
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.UserJpaRepository;
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data.UserData;
+import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.mappers.EmailMapper;
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.mappers.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.ApplicationScope;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -22,10 +22,9 @@ public class UserMySQLAdapter implements UserRegisterOutputPort, UserReadOutPort
 
     @Override
     public boolean createUser(User user) {
-        UserData userData = UserMapper.userDomainToUserData(user);
+        UserData userData = UserMapper.toMySQL(user);
         userJpaRepository.save(userData);
-        // TODO: 구현해야됩니다,,
-        return false;
+        return true;
     }
 
     @Override
@@ -36,7 +35,9 @@ public class UserMySQLAdapter implements UserRegisterOutputPort, UserReadOutPort
 
     @Override
     public Optional<User> findByEmail(Email email) {
-        UserData user = userJpaRepository.findByEmail(email.getEmail());
-        return Optional.empty();
+        Optional<UserData> findUser = userJpaRepository.findByEmail(EmailMapper.toMySQL(email));
+        if(findUser.isEmpty()) return Optional.empty();
+        return Optional.of(UserMapper.toDomain(findUser.get()));
     }
+
 }

@@ -2,11 +2,11 @@ package com.yonggamsa.withsuyeonjung.user.framework;
 
 import java.util.stream.Stream;
 
-public class NicknamUtil {
+public class NicknameUtil {
 
-    private static String[] names = NickName.getAllNames();
+    private static String[] names = Nickname.getAllNames();
 
-    enum NickName {
+    private enum Nickname {
         외로운늑대("외로운늑대"),
         호기심많은호랑이("호기심많은호랑이"),
         배고픈사자("배고픈사자"),
@@ -14,7 +14,7 @@ public class NicknamUtil {
 
         private final String name;
 
-        NickName(String name){
+        Nickname(String name){
             this.name = name;
         }
 
@@ -24,7 +24,7 @@ public class NicknamUtil {
 
         public static String[] getAllNames(){
             return Stream.of(values())
-                    .map(NickName::getName)
+                    .map(Nickname::getName)
                     .toArray(String[]::new);
         }
     }

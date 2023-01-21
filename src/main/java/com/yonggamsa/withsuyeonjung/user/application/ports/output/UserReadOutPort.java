@@ -10,4 +10,5 @@ import java.util.UUID;
 public interface UserReadOutPort {
     Optional<User> findById(UUID id);
     Optional<User> findByEmail(Email email);
+
 }

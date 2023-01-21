@@ -44,5 +44,4 @@ public class UserManagementInputPort implements UserManagementUseCase {
         return userReadOutPort.findByEmail(email);
     }
 
-
 }

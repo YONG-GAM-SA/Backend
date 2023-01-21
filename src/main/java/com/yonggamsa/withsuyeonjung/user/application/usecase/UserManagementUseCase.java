@@ -14,4 +14,5 @@ public interface UserManagementUseCase {
 
     public Optional<User> findUserById(UUID id);
     public Optional<User> findUserByEmail(Email email);
+
 }

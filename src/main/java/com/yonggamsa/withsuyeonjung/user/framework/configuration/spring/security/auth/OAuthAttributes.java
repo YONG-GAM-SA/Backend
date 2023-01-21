@@ -2,10 +2,14 @@ package com.yonggamsa.withsuyeonjung.user.framework.configuration.spring.securit
 
 import com.yonggamsa.withsuyeonjung.user.domain.entity.User;
 import com.yonggamsa.withsuyeonjung.user.domain.vo.Nickname;
-import com.yonggamsa.withsuyeonjung.user.framework.NicknamUtil;
+import com.yonggamsa.withsuyeonjung.user.framework.NicknameUtil;
+import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data.BirthDateData;
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data.EmailData;
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data.NicknameData;
-import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data.UserData;
+import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.mappers.BirthDateMapper;
+import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.mappers.EmailMapper;
+import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.mappers.NicknameMapper;
+import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.mappers.UserNameMapper;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -15,14 +19,14 @@ import java.util.UUID;
 @Getter
 public class OAuthAttributes {
 
-    private String name;
-    private String email;
+    private String userName;
+    private EmailData email;
     private String nameAttributeKey;
     private Map<String, Object> attributes;
 
     @Builder
-    public OAuthAttributes(String name, String email, String nameAttributeKey, Map<String, Object> attributes) {
-        this.name = name;
+    public OAuthAttributes(String userName, EmailData email, String nameAttributeKey, Map<String, Object> attributes) {
+        this.userName = userName;
         this.email = email;
         this.nameAttributeKey = nameAttributeKey;
         this.attributes = attributes;
@@ -33,23 +37,24 @@ public class OAuthAttributes {
     }
 
     private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes){
+
+        EmailData email = EmailMapper.toMySQLFromString((String)attributes.get("email"));
+
         return OAuthAttributes.builder()
-                .name((String)attributes.get("name"))
-                .email((String)attributes.get("email"))
+                .userName((String)attributes.get("name"))
+                .email(email)
                 .nameAttributeKey(userNameAttributeName)
                 .attributes(attributes)
                 .build();
     }
 
-    // TODO: password, birthdate, token 상의 필요
     public User toDomainEntity(){
         return User.builder()
                 .id(UUID.randomUUID())
-                .email(null)
-                .userName(null)
-                .birthDate(null)
-                .token(null)
-                .nickname(new Nickname(NicknamUtil.createRandomNickname()))
+                .email(EmailMapper.toDomain(email))
+                .userName(UserNameMapper.toDomainFromString(userName))
+                .birthDate(BirthDateMapper.toDomain(new BirthDateData("0000", "00", "00")))
+                .nickname(NicknameMapper.toDomain(new NicknameData(NicknameUtil.createRandomNickname())))
                 .build();
     }
 

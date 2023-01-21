@@ -1,14 +1,21 @@
 package com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 
+@Getter
 @Embeddable
 @NoArgsConstructor
-@AllArgsConstructor
-public class UsernameData {
+public class UserNameData {
 
-    private String name;
+    private String userName;
+
+    @Builder
+    public UserNameData(String userName) {
+        this.userName = userName;
+    }
 }
