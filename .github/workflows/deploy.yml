@@ -1,16 +1,17 @@
-name: Spring Boot & Gradle & Docker & EC2 CD
+name: MapChat Spring Boot & Gradle & Docker & EC2 CD
 
 on:
   push:
-    branches:
-      - main
-
+    branches: [ master, develop ]
+  pull_request: 
+    branches: [ master ]
+    
 permissions:
   contents: read
 
 jobs:
   build:
-    runs-on: ubuntu-latest #ubuntu-20.04
+    runs-on: ubuntu-latest #ubuntu 최신 버전 
     steps:
       # 기본 체크아웃
       - name: Checkout
@@ -41,6 +42,8 @@ jobs:
           cd ./src/main/resources
           touch ./application-database.yaml
           echo "${{ secrets.MAIN_DATABASE_YML }}" >> ./application-database.yml
+          touch ./applaction-oauth.yaml
+          echo "${{ secrets.MAIN_OAUTH_YML }}" >> ./applcation-oauth.yml
         shell: bash
 
       # Gradle build
