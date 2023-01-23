@@ -21,11 +21,11 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           
-      # application-*.yml file 생성
-      - name: Create application-db.yml 
-        run:
-          touch ./src/main/resources/application-db.yml
-          echo "${{ secrets.DB_YML }}" >> ./src/main/resources/application-db.yml
+#       # application-*.yml file 생성
+#       - name: Create application-db.yml 
+#         run:
+#           touch ./src/main/resources/application-db.yml
+#           echo "${{ secrets.DB_YML }}" >> ./src/main/resources/application-db.yml
       - name: Create application-oauth.yml 
           touch ./src/main/resources/applaction-oauth.yml
           echo "${{ secrets.OAUTH_YML }}" >> ./src/main/resources/applaction-oauth.yml
