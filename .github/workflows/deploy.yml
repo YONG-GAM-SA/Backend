@@ -4,10 +4,7 @@ on:
   push:
     branches: [ master, develop ]
   pull_request: 
-    branches: [ master ]
-    
-permissions:
-  contents: read
+    branches: [ master, develop ]
 
 jobs:
   build:
@@ -24,46 +21,37 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           
-      # 그래들 캐싱
-      - name: Gradle Caching
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-            
       # application-*.yml file 생성
       - name: Create application-db.yml 
         run:
           touch ./src/main/resources/application-db.yml
-          echo "${{ secrets.MAIN_DATABASE_YML }}" >> ./src/main/resources/application-db.yml
+          echo "${{ secrets.DB_YML }}" >> ./src/main/resources/application-db.yml
       - name: Create application-oauth.yml 
           touch ./src/main/resources/applaction-oauth.yml
           echo "${{ secrets.MAIN_OAUTH_YML }}" >> ./src/main/resources/applaction-oauth.yml
       
-      # Gradle build
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      
       - name: Build with Gradle
-        run: ./gradlew bootJar
+        run: ./gradlew clean build
 
-      # Spring 어플리케이션 Docker Image 빌드
-      - name: Build Docker Image For Spring
-        run: |
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/도커 레파지토리 이름
-          docker push ${{ secrets.DOCKER_USERNAME }}/도커 레파지토리 이름
+#       # Spring 어플리케이션 Docker Image 빌드
+#       - name: Build Docker Image For Spring
+#         run: |
+#           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+#           docker build -t ${{ secrets.DOCKER_USERNAME }}/도커 레파지토리 이름
+#           docker push ${{ secrets.DOCKER_USERNAME }}/도커 레파지토리 이름
           
-      # 서버에서 Docker 이미지 실행
-      - name: EC2 Docker Run
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_KEY }}
-          script: |
-            docker rm -f $(docker ps -qa)
-            docker rmi ${{ secrets.DOCKER_USERNAME }}/도커 레파지토리 이름
-            docker pull ${{ secrets.DOCKER_USERNAME }}/도커 레파지토리 이름
-            docker-compose up -d
+#       # 서버에서 Docker 이미지 실행
+#       - name: EC2 Docker Run
+#         uses: appleboy/ssh-action@master
+#         with:
+#           host: ${{ secrets.EC2_HOST }}
+#           username: ubuntu
+#           key: ${{ secrets.EC2_KEY }}
+#           script: |
+#             docker rm -f $(docker ps -qa)
+#             docker rmi ${{ secrets.DOCKER_USERNAME }}/도커 레파지토리 이름
+#             docker pull ${{ secrets.DOCKER_USERNAME }}/도커 레파지토리 이름
+#             docker-compose up -d
