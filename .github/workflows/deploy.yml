@@ -27,6 +27,7 @@ jobs:
 #           touch ./src/main/resources/application-db.yml
 #           echo "${{ secrets.DB_YML }}" >> ./src/main/resources/application-db.yml
       - name: Create application-oauth.yml 
+        run:
           touch ./src/main/resources/applaction-oauth.yml
           echo "${{ secrets.OAUTH_YML }}" >> ./src/main/resources/applaction-oauth.yml
       
