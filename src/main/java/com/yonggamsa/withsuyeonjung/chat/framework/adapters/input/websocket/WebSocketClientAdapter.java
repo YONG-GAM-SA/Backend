@@ -1,5 +1,8 @@
-package com.yonggamsa.withsuyeonjung.chat.framework.input.websocket;
+package com.yonggamsa.withsuyeonjung.chat.framework.adapters.input.websocket;
 
+import org.springframework.messaging.Message;
+import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -8,10 +11,16 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class WebSocketClientAdapter extends TextWebSocketHandler {
+// TODO: 필요 여부 확인 후 제거
+public class WebSocketClientAdapter extends TextWebSocketHandler implements ChannelInterceptor {
 
     private static List<WebSocketSession> webSocketSessionList = new ArrayList<>();
+
+    // TODO: 추후 메시지 수신 전 처리할 정책 구현
+    @Override
+    public Message<?> preSend(Message<?> message, MessageChannel channel) {
+        return ChannelInterceptor.super.preSend(message, channel);
+    }
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
