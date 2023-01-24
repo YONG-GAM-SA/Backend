@@ -56,12 +56,14 @@ jobs:
         run: |
             rm -f ~/.gradle/caches/modules-2/modules-2.lock
             rm -f ~/.gradle/caches/modules-2/gc.properties
-            
+      
+      # 여기서 $GITHUB_SHA라는 값을 사용하는데 이 값은 Github에서 기본적으로 제공하는 환경변수다.
+      # $GITHUB_SHA는 해당 워크플로우를 트리거 한 커밋의 고유값이 할당되어있다.
       - name: Docker build
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker build -t ${{ secrets.PROJECT_NAME }} /도커 레파지토리 이름
-          docker tag ${{ secrets.PROJECT_NAME }} ${{ secrets.DOCKER_HUB_REPO }}:${GITHUB_SHA::7}
+          docker tag ${{ secrets.PROJECT_NAME }} ${{ secrets.DOCKER_HUB_REPO }}:${GITHUB_SHA::7} 
           docker push ${{ secrets.DOCKER_HUB_REPO }}:${GITHUB_SHA::7} /도커 레파지토리 이름
       
       - name: Deploy
