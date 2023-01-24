@@ -70,7 +70,7 @@ jobs:
       - name: Docker build
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -t ${{ secrets.PROJECT_NAME }} /도커 레파지토리 이름
+          docker build -t ${{ secrets.PROJECT_NAME }} ./도커 레파지토리 이름
           docker tag ${{ secrets.PROJECT_NAME }} ${{ secrets.DOCKER_HUB_REPO }}:${GITHUB_SHA::7} 
           docker push ${{ secrets.DOCKER_HUB_REPO }}:${GITHUB_SHA::7} /도커 레파지토리 이름
       
