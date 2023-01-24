@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest #ubuntu 최신 버전 
     env :
       working-directory: ./
-      APPLICATIOn: ${{ secrets.APPLICATION }}
+      APPLICATION: ${{ secrets.APPLICATION }}
       
     steps:
       # 기본 체크아웃
