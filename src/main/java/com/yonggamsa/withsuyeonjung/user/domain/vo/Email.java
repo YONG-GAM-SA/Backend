@@ -1,12 +1,17 @@
 package com.yonggamsa.withsuyeonjung.user.domain.vo;
 
-import lombok.Value;
+import lombok.*;
 
-@Value
+@Getter
+@NoArgsConstructor
 public class Email {
-    String email;
 
-    public static Email getEmail(String email) {
-        return new Email(email);
+    private String hostName;
+    private String domainName;
+
+    @Builder
+    public Email(String hostName, String domainName) {
+        this.hostName = hostName;
+        this.domainName = domainName;
     }
 }
