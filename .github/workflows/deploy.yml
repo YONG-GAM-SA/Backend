@@ -30,9 +30,9 @@ jobs:
         uses : actions/cache@v2
         with:
           path: |
-                ~/.gradle/caches
-                ~/.gradle/wrapper
-          keys: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle', '**/gradle-wrapper.properties') }}
+               ~/.gradle/caches
+               ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle', '**/gradle-wrapper.properties') }}
           restore-keys: |
                 ${{ runner.os }}-gradle-
       - uses: actions/checkout@v3
