@@ -70,9 +70,9 @@ jobs:
       - name: Docker build
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -t ${{ secrets.PROJECT_NAME }} ./도커 레파지토리 이름
+          docker build -t ${{ secrets.PROJECT_NAME }} .
           docker tag ${{ secrets.PROJECT_NAME }} ${{ secrets.DOCKER_HUB_REPO }}:${GITHUB_SHA::7} 
-          docker push ${{ secrets.DOCKER_HUB_REPO }}:${GITHUB_SHA::7} /도커 레파지토리 이름
+          docker push ${{ secrets.DOCKER_HUB_REPO }}:${GITHUB_SHA::7}
       
       - name: Deploy
         uses: appleboy/ssh-action@master
@@ -89,13 +89,13 @@ jobs:
               docker rm ${{ secrets.PROJECT_NAME }}
               docker run -d --name ${{ secrets.PROJECT_NAME }} -p 80:8080 ${{ secrets.PROJECT_NAME }}
               
-#       - name: acion-slack
-#         uses: 8398a7/action-slack@v3
-#         with:
-#           status: ${{ job.status }}
-#           author_name: Github Action Test
-#           fields: repo, message, commit, author, action, eventName, ref, workflow, job, took
-#         env:
-#           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-#         if: always()
+      - name: acion-slack
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          author_name: Github Action Test
+          fields: repo, message, commit, author, action, eventName, ref, workflow, job, took
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
     
