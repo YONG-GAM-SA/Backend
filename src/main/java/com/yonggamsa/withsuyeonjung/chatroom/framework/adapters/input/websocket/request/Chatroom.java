@@ -1,4 +1,4 @@
-package com.yonggamsa.withsuyeonjung.chat.framework.adapters.input.websocket.request;
+package com.yonggamsa.withsuyeonjung.chatroom.framework.adapters.input.websocket.request;
 
 import lombok.Data;
 
