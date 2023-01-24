@@ -2,8 +2,8 @@ package com.yonggamsa.withsuyeonjung.user.framework.configuration.spring.securit
 
 import com.yonggamsa.withsuyeonjung.user.application.usecase.UserManagementUseCase;
 import com.yonggamsa.withsuyeonjung.user.domain.entity.User;
-import com.yonggamsa.withsuyeonjung.user.domain.vo.Email;
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data.UserData;
+import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.mappers.EmailMapper;
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.mappers.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,7 +16,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.Map;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -38,19 +38,17 @@ public class CustomOAuth2UserService implements OAuth2UserService {
         UserData user = saveOrUpdate(oAuthAttributes);
 
         return new DefaultOAuth2User(
-                Collections.singleton(new SimpleGrantedAuthority(null)),
+                Collections.singleton(new SimpleGrantedAuthority("TEST")),
                 oAuthAttributes.getAttributes(),
                 oAuthAttributes.getNameAttributeKey());
     }
 
     private UserData saveOrUpdate(OAuthAttributes attributes){
 
-        User user = userManagementUseCase.findUserByEmail(new Email(attributes.getEmail()))
-                .orElse(attributes.toDomainEntity());
+        Optional<User> user = userManagementUseCase.findUserByEmail(EmailMapper.toDomain(attributes.getEmail()));
+        User savedUser = user.orElseGet(() -> userManagementUseCase.register(attributes.toDomainEntity()));
 
-        User savedUser = userManagementUseCase.register(user);
-
-        return UserMapper.userDomainToUserData(savedUser);
+        return UserMapper.toMySQL(savedUser);
     }
 
 }

@@ -1,36 +1,47 @@
 package com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data;
 
+import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.converter.BirthDateConverter;
+import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.converter.EmailConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.UUID;
 
+@Getter
 @Table(name = "users")
 @Entity
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
 public class UserData {
 
     @Id
     @Column(columnDefinition = "BINARY(16)")
     private UUID id;
-    private String name;
-//    @Embedded
-    private String email;
-    @Embedded
-    private TokenData token; // social_token (OAuth2.0)
+    private UserNameData userName;
+    @Convert(converter = EmailConverter.class)
+    private EmailData email;
     @Embedded
     private NicknameData nickname;
     @Embedded
     private PasswordData password;
-    @Embedded
+
+    @Convert(converter = BirthDateConverter.class)
     private BirthDateData birthDate;
 
-    public UserData update(String name, String email){
-        this.name = name;
+    @Builder
+    public UserData(UUID id, UserNameData userName, EmailData email, NicknameData nickname, PasswordData password, BirthDateData birthDate) {
+        this.id = UUID.randomUUID();
+        this.userName = userName;
+        this.email = email;
+        this.nickname = nickname;
+        this.password = password;
+        this.birthDate = birthDate;
+    }
+
+    public UserData update(UserNameData userName, EmailData email){
+        this.userName = userName;
         this.email = email;
         return this;
     }

@@ -1,14 +1,15 @@
 package com.yonggamsa.withsuyeonjung.user.domain.vo;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Value;
+import lombok.*;
+
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Nickname {
 
-    private String nickName;
+    private String nickname;
 
+    @Builder
+    public Nickname(String nickname) {
+        this.nickname = nickname;
+    }
 }

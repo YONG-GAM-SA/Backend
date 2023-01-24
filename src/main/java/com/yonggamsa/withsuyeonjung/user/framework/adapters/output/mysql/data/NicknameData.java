@@ -1,24 +1,28 @@
 package com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data;
 
-import com.yonggamsa.withsuyeonjung.user.domain.vo.Nickname;
-import com.yonggamsa.withsuyeonjung.user.framework.NicknamUtil;
+import com.yonggamsa.withsuyeonjung.user.framework.NicknameUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
-@Builder
+@Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class NicknameData {
 
     private String nickname;
 
+    @Builder
+    public NicknameData(String nickname) {
+        this.nickname = nickname;
+    }
+
     public static NicknameData createNicknameRandomly(){
         return NicknameData.builder()
-                .nickname(NicknamUtil.createRandomNickname())
+                .nickname(NicknameUtil.createRandomNickname())
                 .build();
     }
 }
