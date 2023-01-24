@@ -21,6 +21,7 @@ public class ChatManagementInputPort implements ChatManagementUseCase {
                          String message,
                          ZonedDateTime createdDate) {
         Chat chat = ChatFactory.getchat(id, sender, message, createdDate);
-        chatManagementOutputPort.persistChat(chat);
+//      chatManagementOutputPort.persistChat(chat);
+        return null;
     }
 }
