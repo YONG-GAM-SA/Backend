@@ -9,9 +9,7 @@ spring:
             redirect-uri: http://localhost:8080/login/oauth2/code/google
             scope:
               - profile
-              - email
-  profiles:
-    include: oauth, db
+              - email 
   jpa:
     hiberante:
       ddl-auto: create
