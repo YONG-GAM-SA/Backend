@@ -37,17 +37,15 @@ jobs:
           restore-keys: |
                 ${{ runner.os }}-gradle-
       - uses: actions/checkout@v3
-      - run: 
-          touch ./src/main/resources/application.yml
-          echo "${{env.APPLICATION}}"> ./src/main/resources/application.yml
-          
+      - run: touch ./src/main/resources/application.yml
+      - run: echo "${{env.APPLICATION}}"> ./src/main/resources/application.yml
       - uses: actions/upload-artifact@v2
         with:
           name: application.yml
           path: ./src/main/resources/application.yml
-      - run:
-          touch ./src/main/resources/application-oauth.yml
-          echo "${{env.APPLICATION_OAUTH}}"> ./src/main/resources/application-oauth.yml
+          
+      - run: touch ./src/main/resources/application-oauth.yml
+      - run: echo "${{env.APPLICATION_OAUTH}}"> ./src/main/resources/application-oauth.yml
       - uses: actions/upload-artifact@v2
         with:
           name: application-oauth.yml
