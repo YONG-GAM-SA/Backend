@@ -86,5 +86,6 @@ src/test/resources/application.properties
 
 ### build by IntelliJ
 src/main/generated/
-### INTELLIJ IDEA ###
+### INTELLIJ IDEA ##
+application.yml
 application-oauth.yml

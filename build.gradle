@@ -9,6 +9,13 @@ group = 'com.yonggamsa'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+bootJar {
+    archivesBaseName = 'mapchat'
+    archiveFileName = 'mapchat.jar'
+}
+
+
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor

@@ -2,7 +2,6 @@ package com.yonggamsa.withsuyeonjung.chat.framework.adapters.input.websocket;
 
 import com.yonggamsa.withsuyeonjung.chat.application.usecase.ChatManagementUseCase;
 import com.yonggamsa.withsuyeonjung.chat.framework.adapters.input.websocket.request.Chat;
-import com.yonggamsa.withsuyeonjung.chat.framework.adapters.input.websocket.request.Chatroom;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;

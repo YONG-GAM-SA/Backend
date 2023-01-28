@@ -1,7 +1,8 @@
 package com.yonggamsa.withsuyeonjung.chat.framework.adapters.output.repository;
 
-import org.springframework.web.context.annotation.ApplicationScope;
+import org.springframework.stereotype.Repository;
 
-@ApplicationScope
+@Repository
+
 public class ChatManagementRepository {
 }
