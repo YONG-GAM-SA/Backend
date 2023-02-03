@@ -27,22 +27,22 @@ jobs:
           distribution: 'temurin'
       
       # Gradle Caching
-      - name: Cache Gradle packages
-        uses: actions/cache@v2
-        with:
-          path: |
-               ~/.gradle/caches
-               ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-                ${{ runner.os }}-gradle-
-      - uses: actions/checkout@v3
-      - run: touch ./src/main/resources/application.yml
-      - run: echo "${{env.APPLICATION}}"> ./src/main/resources/application.yml
-      - uses: actions/upload-artifact@v2
-        with:
-          name: application.yml
-          path: ./src/main/resources/application.yml
+#       - name: Cache Gradle packages
+#         uses: actions/cache@v2
+#         with:
+#           path: |
+#                ~/.gradle/caches
+#                ~/.gradle/wrapper
+#           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle', '**/gradle-wrapper.properties') }}
+#           restore-keys: |
+#                 ${{ runner.os }}-gradle-
+#       - uses: actions/checkout@v3
+#       - run: touch ./src/main/resources/application.yml
+#       - run: echo "${{env.APPLICATION}}"> ./src/main/resources/application.yml
+#       - uses: actions/upload-artifact@v2
+#         with:
+#           name: application.yml
+#           path: ./src/main/resources/application.yml
           
       - run: touch ./src/main/resources/application-oauth.yml
       - run: echo "${{env.APPLICATION_OAUTH}}"> ./src/main/resources/application-oauth.yml
@@ -59,11 +59,11 @@ jobs:
         run: ./gradlew clean build
         working-directory: ${{ env.working-directory }}
         
-      - name: Cleanup Gradle Cache
-        if: ${{ always() }}
-        run: |
-            rm -f ~/.gradle/caches/modules-2/modules-2.lock
-            rm -f ~/.gradle/caches/modules-2/gc.properties
+#       - name: Cleanup Gradle Cache
+#         if: ${{ always() }}
+#         run: |
+#             rm -f ~/.gradle/caches/modules-2/modules-2.lock
+#             rm -f ~/.gradle/caches/modules-2/gc.properties
       
       # 여기서 $GITHUB_SHA라는 값을 사용하는데 이 값은 Github에서 기본적으로 제공하는 환경변수다.
       # $GITHUB_SHA는 해당 워크플로우를 트리거 한 커밋의 고유값이 할당되어있다.
