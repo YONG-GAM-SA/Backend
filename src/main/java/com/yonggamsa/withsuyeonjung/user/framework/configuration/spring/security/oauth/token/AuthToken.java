@@ -9,7 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import java.security.Key;
 import java.util.Date;
 
+
 @Slf4j
+@Getter
 @RequiredArgsConstructor
 public class AuthToken {
 
@@ -17,7 +19,6 @@ public class AuthToken {
     private final Key key;
     private final String token;
     private static final String AUTHORITIES_KEY = "role";
-
 
     public AuthToken(String id, Date expiry, Key key) {
         this.key = key;

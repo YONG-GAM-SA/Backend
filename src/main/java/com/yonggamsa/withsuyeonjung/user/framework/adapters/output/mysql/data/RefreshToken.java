@@ -2,12 +2,14 @@ package com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
-import org.springframework.data.annotation.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "REFRESH_TOKEN")
 public class RefreshToken {
 
@@ -17,14 +19,14 @@ public class RefreshToken {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long refreshTokenSeq;
 
-    @Column(columnDefinition = "BINARY(16)")
-    private UUID userId;
+    @Column(name = "USER_ID", length = 256)
+    private String userId;
 
     @Column(name = "REFRESH_TOKEN", length = 256)
     private String refreshToken;
 
     public RefreshToken(
-            @NotNull UUID userId,
+            @NotNull String userId,
             @NotNull String refreshToken) {
         this.userId = userId;
         this.refreshToken = refreshToken;

@@ -23,6 +23,11 @@ public class OAuthAttributes {
     private String nameAttributeKey;
     private Map<String, Object> attributes;
 
+
+    public String getId(){
+        return (String) attributes.get("sub");
+    }
+
     @Builder
     public OAuthAttributes(String userName, EmailData email, String nameAttributeKey, Map<String, Object> attributes) {
         this.userName = userName;

@@ -1,6 +1,15 @@
 spring:
-  profiles:
-    include: oauth
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 693023855454-gtv0uqibbbthbbtm86o5f4kej34efht0.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: http://localhost:8080/login/oauth2/code/google
+            scope:
+              - profile
+              - email
   jpa:
     hiberante:
       ddl-auto: create
@@ -24,3 +33,4 @@ spring:
       port: 27017
       database: chat
 
+jwt.secret: '8sknjlO3NPTBqo319DHLNqsQAfRJEdKsETOds'

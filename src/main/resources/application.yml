@@ -33,3 +33,4 @@ spring:
       port: 27017
       database: chat
 
+jwt.secret: '8sknjlO3NPTBqo319DHLNqsQAfRJEdKsETOds'
