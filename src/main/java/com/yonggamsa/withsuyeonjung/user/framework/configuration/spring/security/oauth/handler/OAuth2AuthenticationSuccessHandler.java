@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -53,6 +55,8 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         getRedirectStrategy().sendRedirect(request, response, targetUrl);
     }
 
+
+
     protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
         Optional<String> redirectUrl = CookieUtil.getCookie(request, REDIRECT_URI_NAME_COOKIE_NAME)
                 .map(Cookie::getValue);
@@ -63,7 +67,9 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
         String targetUrl = redirectUrl.orElse(getDefaultTargetUrl()); // default : "/"
         OAuth2AuthenticationToken authToken = (OAuth2AuthenticationToken) authentication;
-        OAuthAttributes oAuthAttributes = (OAuthAttributes) authentication.getPrincipal();
+        OAuth2User principal = (OAuth2User) authentication.getPrincipal();
+
+        OAuthAttributes oAuthAttributes = OAuthAttributes.of(principal.getName(), principal.getAttributes());
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
         Date now = new Date();
