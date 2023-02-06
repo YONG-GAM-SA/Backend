@@ -1,7 +1,6 @@
 package com.yonggamsa.withsuyeonjung;
 
-import com.yonggamsa.withsuyeonjung.user.framework.configuration.spring.security.oauth.vo.AppProperties;
-import lombok.RequiredArgsConstructor;
+import com.yonggamsa.withsuyeonjung.user.framework.configuration.security.oauth.vo.AppProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
