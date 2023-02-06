@@ -1,7 +1,7 @@
 package com.yonggamsa.withsuyeonjung.user.framework.configuration.security.oauth.handler;
 
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.redis.data.RefreshToken;
-import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.redis.data.RefreshTokenRepository;
+import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.redis.RefreshTokenRepository;
 import com.yonggamsa.withsuyeonjung.user.framework.configuration.security.oauth.provider.JwtProvider;
 import com.yonggamsa.withsuyeonjung.user.framework.configuration.security.oauth.repository.OAuth2AuthorizationRequestBasedOnCookieRepository;
 import com.yonggamsa.withsuyeonjung.user.framework.configuration.security.oauth.token.AuthToken;

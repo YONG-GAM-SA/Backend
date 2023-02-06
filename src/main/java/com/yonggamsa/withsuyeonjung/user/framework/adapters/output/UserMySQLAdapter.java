@@ -8,6 +8,7 @@ import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.UserJpa
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data.UserData;
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.mappers.EmailMapper;
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.mappers.UserMapper;
+import com.yonggamsa.withsuyeonjung.user.framework.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -29,7 +30,7 @@ public class UserMySQLAdapter implements UserRegisterOutputPort, UserReadOutPort
 
     @Override
     public Optional<User> findById(UUID id) {
-        UserData findUser = userJpaRepository.findById(id).orElseThrow(() -> new RuntimeException("없는 ID의 유저입니다. : " + id.toString()));
+        UserData findUser = userJpaRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id.toString()));
         return null;
     }
 

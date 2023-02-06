@@ -1,6 +1,6 @@
 package com.yonggamsa.withsuyeonjung.user.framework.configuration.security;
 
-import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.redis.data.RefreshTokenRepository;
+import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.redis.RefreshTokenRepository;
 import com.yonggamsa.withsuyeonjung.user.framework.configuration.security.oauth.filter.JwtAuthenticationFilter;
 import com.yonggamsa.withsuyeonjung.user.framework.configuration.security.oauth.repository.OAuth2AuthorizationRequestBasedOnCookieRepository;
 import com.yonggamsa.withsuyeonjung.user.framework.configuration.security.oauth.service.CustomOAuth2UserService;
@@ -86,6 +86,7 @@ public class WebSecurityConfig {
                     .accessDeniedHandler(tokenAccessDeniedHandler)
                 .and()
                     .authorizeRequests()
+                    .antMatchers("/**").permitAll()
                     .antMatchers("/h2-console/**","/favicon.ico","/").permitAll()
                     .anyRequest().authenticated()
                 .and()
