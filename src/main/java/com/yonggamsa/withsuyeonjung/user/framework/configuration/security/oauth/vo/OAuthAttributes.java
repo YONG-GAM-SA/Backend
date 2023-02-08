@@ -1,7 +1,7 @@
 package com.yonggamsa.withsuyeonjung.user.framework.configuration.security.oauth.vo;
 
 import com.yonggamsa.withsuyeonjung.user.domain.entity.User;
-import com.yonggamsa.withsuyeonjung.user.framework.NicknameUtil;
+import com.yonggamsa.withsuyeonjung.user.application.util.NicknameUtil;
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data.BirthDateData;
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data.EmailData;
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data.NicknameData;
