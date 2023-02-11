@@ -2,15 +2,22 @@ package com.yonggamsa.withsuyeonjung.chatroom.domain.entity;
 
 import com.google.gson.Gson;
 import com.yonggamsa.withsuyeonjung.chatroom.domain.vo.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class Chatroom {
     private Id id;
-    private static UserList userList;
+    private UserList userList;
     private ChatMessage chatMessage;
     private Date date;
 
@@ -26,12 +33,16 @@ public class Chatroom {
             id = null;
             return null;
         } else {
-            Chatroom chatroom = new Chatroom();
-            chatroom.id = id;
+            Chatroom chatroom = Chatroom.createChatroom(id)
+                    .builder()
+                    .id(id)
+                    .userList(new UserList())
+                    .chatMessage(new ChatMessage())
+                    .date(new Date())
+                    .build();
             return chatroom;
         }
     }
-
 
     /**
      * 채널에 접속한 모든 session(유저)에게 chatMessage를 전송
