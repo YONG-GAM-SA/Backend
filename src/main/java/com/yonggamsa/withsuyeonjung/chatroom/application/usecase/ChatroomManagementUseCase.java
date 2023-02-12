@@ -1,16 +1,16 @@
 package com.yonggamsa.withsuyeonjung.chatroom.application.usecase;
 
 import com.yonggamsa.withsuyeonjung.chatroom.domain.entity.Chatroom;
-import com.yonggamsa.withsuyeonjung.chatroom.domain.vo.Id;
-import org.springframework.web.socket.WebSocketSession;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface ChatroomManagementUseCase {
-    Chatroom createChatroom(Id id);
+    Chatroom createChatroom(String chatroomId);
     List<Chatroom> retrieveChatroomList();
 
-    Chatroom enterChatroom(Id id, WebSocketSession session, String user);
+    Chatroom enterChatroom(String chatroomId, String user);
 
-    Chatroom exitChatroom(Id id, WebSocketSession session, String user);
+    Chatroom exitChatroom(String chatroomId, String user);
 }

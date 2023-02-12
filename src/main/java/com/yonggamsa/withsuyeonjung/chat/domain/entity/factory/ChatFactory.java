@@ -7,16 +7,23 @@ import java.time.ZonedDateTime;
 
 public class ChatFactory {
 
-    public static Chat getchat(Id id,
+    public static Chat getchat(String chatId,
+                               String chatroomId,
+                               String type,
                                String sender,
                                String message,
+                               String receiver,
                                ZonedDateTime createdDate
                                ) {
         return Chat.builder()
-                .chatId(Id.withoutId())
+                .chatid(chatId)
+                .chatroomId(chatroomId)
+                .type(type)
                 .sender(sender)
                 .message(message)
-                .createdDate(createdDate)
+                .receiver(receiver)
+                .createdDate(createdDate.toString())
                 .build();
     }
+
 }

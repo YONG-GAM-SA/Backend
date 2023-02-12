@@ -1,20 +1,20 @@
 package com.yonggamsa.withsuyeonjung.chatroom.framework.adapters.output.mongo.data;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
+import java.time.ZonedDateTime;
+import java.util.List;
 
-@Document(collation = "chatroom")
 @Getter
-@NoArgsConstructor
+@Setter
+@Builder
+@Document(collection = "chatroom")
 public class ChatroomData {
     @Id
-    private IDData id;
-    private UserListData userListData;
-    private ChatMessageData chatMessageData;
-    private DateData dateData;
+    String chatroomId;
+    List<String> users;
+    String createdDate;
 
 }
