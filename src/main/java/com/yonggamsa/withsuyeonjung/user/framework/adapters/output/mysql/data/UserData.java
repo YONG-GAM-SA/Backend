@@ -2,7 +2,6 @@ package com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data;
 
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.converter.BirthDateConverter;
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.converter.EmailConverter;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

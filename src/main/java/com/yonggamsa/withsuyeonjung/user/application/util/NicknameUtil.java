@@ -1,4 +1,4 @@
-package com.yonggamsa.withsuyeonjung.user.framework;
+package com.yonggamsa.withsuyeonjung.user.application.util;
 
 import java.util.stream.Stream;
 

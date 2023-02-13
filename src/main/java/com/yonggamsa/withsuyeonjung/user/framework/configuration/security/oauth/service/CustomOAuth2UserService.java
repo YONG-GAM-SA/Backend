@@ -1,10 +1,11 @@
-package com.yonggamsa.withsuyeonjung.user.framework.configuration.spring.security.auth;
+package com.yonggamsa.withsuyeonjung.user.framework.configuration.security.oauth.service;
 
 import com.yonggamsa.withsuyeonjung.user.application.usecase.UserManagementUseCase;
 import com.yonggamsa.withsuyeonjung.user.domain.entity.User;
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data.UserData;
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.mappers.EmailMapper;
 import com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.mappers.UserMapper;
+import com.yonggamsa.withsuyeonjung.user.framework.configuration.security.oauth.vo.OAuthAttributes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;

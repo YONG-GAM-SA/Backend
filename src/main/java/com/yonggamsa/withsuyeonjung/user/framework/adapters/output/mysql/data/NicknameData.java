@@ -1,7 +1,6 @@
 package com.yonggamsa.withsuyeonjung.user.framework.adapters.output.mysql.data;
 
-import com.yonggamsa.withsuyeonjung.user.framework.NicknameUtil;
-import lombok.AllArgsConstructor;
+import com.yonggamsa.withsuyeonjung.user.application.util.NicknameUtil;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
