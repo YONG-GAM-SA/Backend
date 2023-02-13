@@ -1,4 +1,4 @@
-package com.yonggamsa.withsuyeonjung.user.framework.configuration.spring;
+package com.yonggamsa.withsuyeonjung.user.framework.configuration;
 
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.core.env.PropertiesPropertySource;
