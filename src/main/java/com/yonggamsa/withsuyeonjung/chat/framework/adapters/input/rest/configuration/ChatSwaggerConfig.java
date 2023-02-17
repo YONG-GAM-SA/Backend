@@ -11,11 +11,15 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class ChatSwaggerConfig {
 
+    private final String basePackage = "com.yonggamsa.withsuyeonjung.chat.framework.adapters.input.rest";
+    private final String apiTitle = "Map Chat Swagger";
+    private final String apiDescription = "Map Chat Chat API";
+    private final String apiVersion = "3.0";
     public Docket api() {
         return new Docket(DocumentationType.OAS_30)
                 .useDefaultResponseMessages(false)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.yonggamsa.withsuyeonjung.chat.framework.adapters.input.rest"))
+                .apis(RequestHandlerSelectors.basePackage(basePackage))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
@@ -23,9 +27,9 @@ public class ChatSwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Map Chat Swagger")
-                .description("Map Chat Chat API")
-                .version("3.0")
+                .title(apiTitle)
+                .description(apiDescription)
+                .version(apiVersion)
                 .build();
     }
 
