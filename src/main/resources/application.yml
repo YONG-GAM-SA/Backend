@@ -1,11 +1,14 @@
 spring:
   profiles:
     include: oauth
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   jpa:
     hiberante:
       ddl-auto: create
       format_sql: 'true'
-    show-sql: 'true'
+    show-sql: true
   h2:
     console:
       enabled: true
@@ -22,7 +25,15 @@ spring:
     mongodb:
       host: localhost
       port: 27017
-      database: chat
+      database: mapchat
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate: debug
 
 jwt.secret: '8sknjlO3NPTBqo319DHLNqsQAfRJEdKsETOds'
 

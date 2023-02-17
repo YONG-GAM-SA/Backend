@@ -5,26 +5,48 @@ import com.yonggamsa.withsuyeonjung.chat.application.usecase.ChatManagementUseCa
 import com.yonggamsa.withsuyeonjung.chat.domain.entity.Chat;
 import com.yonggamsa.withsuyeonjung.chat.domain.entity.factory.ChatFactory;
 import com.yonggamsa.withsuyeonjung.chat.domain.vo.Id;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 
-@Service
+@Component
+@RequiredArgsConstructor
 public class ChatManagementInputPort implements ChatManagementUseCase {
 
-//    private ChatManagementOutputPort chatManagementOutputPort;
-//
-//    public ChatManagementInputPort(ChatManagementOutputPort chatManagementOutputPort) {
-//        this.chatManagementOutputPort = chatManagementOutputPort;
-//    }
+    private final ChatManagementOutputPort chatManagementOutputPort;
 
     @Override
-    public Chat saveChat(Id id,
+    public Chat saveChat(String chatId,
+                         String chatroomId,
+                         String type,
                          String sender,
                          String message,
+                         String receiver,
                          ZonedDateTime createdDate) {
-        Chat chat = ChatFactory.getchat(id, sender, message, createdDate);
-//        chatManagementOutputPort.persistChat(chat);
-        return null;
+        Chat chat = ChatFactory.getchat(chatId, chatroomId, type, sender, message, receiver, createdDate);
+        return chatManagementOutputPort.persistChat(chat);
+    }
+
+    @Override
+    public List<Chat> retrieveChatBySender(String sender) {
+        return chatManagementOutputPort.retrieveChatBySender(sender);
+    }
+
+    @Override
+    public List<Chat> retrieveChatByReceiver(String receiver) {
+        return chatManagementOutputPort.retrieveChatByReceiver(receiver);
+    }
+
+    @Override
+    public List<Chat> retrieveChatByChatroomId(String chatroomId) {
+        return chatManagementOutputPort.retrieveChatByChatroomId(chatroomId);
+    }
+
+    @Override
+    public List<Chat> retrieveChatList() {
+        return chatManagementOutputPort.retrieveChatList();
     }
 }

@@ -10,9 +10,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 		AppProperties.class
 )
 public class WithsuyeonjungApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(WithsuyeonjungApplication.class, args);
 	}
-
 }
