@@ -6,11 +6,14 @@ import java.time.LocalDateTime;
 
 @Getter
 public class Date {
-    private final LocalDateTime createDate;
-    private final LocalDateTime deletedDate;
+    private LocalDateTime createDate;
+    private LocalDateTime deletedDate;
 
-    public Date(LocalDateTime createDate, LocalDateTime createDate1, LocalDateTime deletedDate) {
-        this.createDate = createDate1;
+    public Date() {
+        this.createDate = LocalDateTime.now();
+    }
+    public Date(LocalDateTime createDate, LocalDateTime deletedDate) {
+        this.createDate = createDate;
         this.deletedDate = deletedDate;
     }
 }
