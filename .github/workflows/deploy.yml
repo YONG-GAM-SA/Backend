@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest #ubuntu 최신 버전 
+    runs-on: aws-latest #ubuntu 최신 버전 
     env :
       working-directory: ./
       APPLICATION: ${{ secrets.APPLICATION }}
