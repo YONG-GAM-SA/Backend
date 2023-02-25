@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: aws-latest #ubuntu 최신 버전 
+    runs-on: ubuntu-latest #ubuntu 최신 버전 
     env :
       working-directory: ./
       APPLICATION: ${{ secrets.APPLICATION }}
@@ -78,7 +78,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_SERVER_HOST }}
-          username: ubuntu
+          username: ec2-user
           key: ${{ secrets.PRIVATE_KEY }}
           envs: GITHUB_SHA
           script: |
