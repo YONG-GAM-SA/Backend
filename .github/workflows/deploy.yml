@@ -2,9 +2,9 @@ name: MapChat Spring Boot & Gradle & Docker & EC2 CD
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request: 
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
