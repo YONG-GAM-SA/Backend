@@ -58,7 +58,10 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew clean build
         working-directory: ${{ env.working-directory }}
-        
+      - uses: actions/upload-artifact@v2
+        with:
+          name: mapchat.jar
+          path: ./build/libs/mapchat.jar
 #       - name: Cleanup Gradle Cache
 #         if: ${{ always() }}
 #         run: |
