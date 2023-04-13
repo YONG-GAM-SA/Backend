@@ -5,7 +5,7 @@ on:
     branches: [ main ]
   pull_request: 
     branches: [ main ]
-
+    
 jobs:
   build:
     runs-on: ubuntu-latest #ubuntu 최신 버전 
@@ -26,17 +26,6 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
       
-      # Gradle Caching
-#       - name: Cache Gradle packages
-#         uses: actions/cache@v2
-#         with:
-#           path: |
-#                ~/.gradle/caches
-#                ~/.gradle/wrapper
-#           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle', '**/gradle-wrapper.properties') }}
-#           restore-keys: |
-#                 ${{ runner.os }}-gradle-
-#       - uses: actions/checkout@v3
       - run: touch ./src/main/resources/application.yml
       - run: echo "${{env.APPLICATION}}"> ./src/main/resources/application.yml
       - uses: actions/upload-artifact@v2
